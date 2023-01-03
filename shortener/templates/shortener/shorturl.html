@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} {{ object.shortcode }} {% endblock title %}
+
+{% block content %}
+<div class='container mt-5 ml-5'>
+    {% if created == True %}
+    <h2>Success!</h2>
+    {% else %}
+    <h2>Short URL Exists</h2>
+    {% endif %}
+
+    <h3>Here is your Linkit URL</h3>
+
+    <p><b>Original URL:</b> <a target="_blank" href='{{ object.url }}'>{{ object.url }}</a></p>
+    <p><b>Linkit URL:</b> <a target="_blank" href='{{ object.get_short_url }}'>{{ object.get_short_url }}</a></p>
+    
+    {% if object.clickevent.count %} 
+        <p>This URL has <i>{{ object.clickevent.count }}</i> click(s).</p> 
+    {% endif %}
+    <a class='btn btn-dark'  href='/'>+ New</a>
+</div>
+{% endblock content %}
